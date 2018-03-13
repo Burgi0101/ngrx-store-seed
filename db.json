@@ -1,1 +1,24 @@
-{}
+{
+  "persons": [
+    {
+      "name": "Sepp",
+      "id": 1
+    },
+    {
+      "name": "Karl",
+      "id": 2
+    },
+    {
+      "name": "Rupi",
+      "id": 3
+    },
+    {
+      "name": "Georg",
+      "id": 4
+    },
+    {
+      "name": "Madhu",
+      "id": 5
+    }
+  ]
+}
