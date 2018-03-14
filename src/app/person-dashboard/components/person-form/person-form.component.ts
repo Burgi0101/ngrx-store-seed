@@ -33,6 +33,6 @@ export class PersonFormComponent {
     update: EventEmitter<Person> = new EventEmitter<Person>();
 
     handleSubmit(person: Person, isValid: boolean) {
-        if(isValid) this.update.emit(person);
+        if (isValid) this.update.emit(person);
     }
- }
+}

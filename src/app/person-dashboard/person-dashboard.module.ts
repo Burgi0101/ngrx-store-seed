@@ -19,7 +19,7 @@ export const ROUTES: Routes = [
         component: PersonDashboardComponent,
     },
     {
-        path: ':personId',
+        path: ':id',
         component: PersonViewerComponent
     }
 ];

@@ -14,8 +14,9 @@ import { Person } from '../../models/person.model';
             &lsaquo; Go back    
         </button>
         <person-form
-        [detail]="person"
-        (update)="onUpdatePerson($event)"></person-form>
+            [detail]="person"
+            (update)="onUpdatePerson($event)">
+        </person-form>
     </div>
     `
 })
@@ -30,15 +31,18 @@ export class PersonViewerComponent implements OnInit {
         private personService: PersonService) { }
 
     ngOnInit() {
+
+        this.route.params
+            .switchMap((data: Person) => {
+                return this.personService.getPerson(data.id)
+            }).subscribe((data: Person) => this.person = data);
+
         this.personService
             .getPersons()
             .subscribe((data: Person[]) => this.persons = data);
     }
 
     onUpdatePerson(event: Person) {
-
-        event.id = parseInt(this.route.snapshot.paramMap.get('personId'));
-
         this.personService
             .updatePerson(event)
             .subscribe((data: Person) => this.person = { ...this.person, ...event })
