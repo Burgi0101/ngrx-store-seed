@@ -6,20 +6,13 @@ import { Person } from '../../models/person.model';
     selector: 'person-detail',
     template: `
     <div>
-        <div *ngIf="editing">
-            <input 
-                type="text" 
-                [value]="detail.name"
-                (input)="onNameChange(name.value)"
-                #name>
-        </div>
         <div>
-            {{ detail.name }}
+            {{ person.name }}
         </div>
         <button (click)="onRemove()">
             Remove
         </button>
-        <button (click)="goToPerson()">
+        <button [routerLink]="['/persons', person.id]">
             View
        </button>
     </div>
@@ -28,7 +21,7 @@ import { Person } from '../../models/person.model';
 export class PersonDetailComponent implements OnChanges {
 
     @Input()
-    detail: Person;
+    person: Person;
 
     @Output()
     edit: EventEmitter<Person> = new EventEmitter<Person>();
@@ -36,35 +29,20 @@ export class PersonDetailComponent implements OnChanges {
     @Output()
     remove: EventEmitter<Person> = new EventEmitter<Person>();
 
-    @Output()
-    view: EventEmitter<Person> = new EventEmitter<Person>();
-
-    editing: boolean = false;
-
     constructor() { }
 
     ngOnChanges(changes: any) {
-        if (changes.detail) {
-            this.detail = { ...changes.detail.currentValue };
+
+        if (changes.person) {
+            this.person = { ...changes.person.currentValue };
         }
     }
 
     onNameChange(value: string) {
-        this.detail.name = value;
+        this.person.name = value;
     }
 
     onRemove() {
-        this.remove.emit(this.detail);
-    }
-
-    toogleEdit() {
-        if (this.editing) {
-            this.edit.emit(this.detail);
-        }
-        this.editing = !this.editing;
-    }
-
-    goToPerson() {
-        this.view.emit(this.detail);
+        this.remove.emit(this.person);
     }
 }

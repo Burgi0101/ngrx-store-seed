@@ -11,7 +11,11 @@ import { PersonDetailComponent } from './components/person-detail/person-detail.
 
 import { PersonViewerComponent } from './containers/person-viewer/person-viewer.component';
 
+import { reducers, effects } from './store';
+
 import { PersonService } from './services/person.service';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 export const ROUTES: Routes = [
     {
@@ -36,7 +40,9 @@ export const ROUTES: Routes = [
         HttpModule,
         HttpClientModule,
         FormsModule,
-        RouterModule.forChild(ROUTES)
+        RouterModule.forChild(ROUTES),
+        StoreModule.forFeature('app', reducers),
+        EffectsModule.forFeature(effects)
     ],
     providers: [
         PersonService

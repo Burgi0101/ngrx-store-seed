@@ -2,9 +2,10 @@ import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-root',
+    styleUrls: ['./app.component.scss'],
     template: `
     <div>
-        NGRX/STORE SEED
+        Persons Application
         <router-outlet></router-outlet>
     <div>
     `
